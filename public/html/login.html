@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>login</title>
+  <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/stylesheets/layui.css">
+  <style type="text/css">
+    /*https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css*/
+
+  </style>
+</head>
+<body>
+  <div class="ng-scope">
+    <div class="login">
+      <div class="content">
+        <h2>到位商家后台</h2>
+        <form class="form-inline">
+          <div class="form-group">
+            <label class="sr-only" for="username"></label>
+            <div class="input-group">
+              <div class="input-group-addon">
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+              </div>
+              <input type="text" class="form-control" id="username" placeholder="输入昵称或手机号">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="sr-only" for="password"></label>
+            <div class="input-group">
+              <div class="input-group-addon">
+                <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+              </div>
+              <input type="password" class="form-control" id="password" placeholder="输入密码">
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="denglu">
+        <button id="login" type="button" class="btn btn-primary">登录</button>
+      </div>
+      <div class="zhuce clearfix">
+        <a href="/html/forget.html">忘记密码</a>
+        <a href="/html/zhuce.html">注册</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="/javascripts/bootstrap.min.js"></script>
+  <!-- 包含了所有编译插件 -->
+  <script src="/javascripts/jQuery.js"></script>
+<script type="text/javascript">
+    $('#login').click(function () {
+      var obj={
+        name:$('#username').val().trim(),
+        mima:$('#password').val().trim()
+      }
+      console.log(obj)
+     var obj2 = JSON.parse(localStorage.getItem(obj.name))
+      if(obj2){
+        if(obj2.name == obj.name && obj2.mima == obj.mima){
+          alert('登录成功')
+          window.location.href ="/index.html"
+        }else{
+          alert('密码错误')
+        }
+      }else{
+        alert('请先注册')
+      }
+    })
+</script>
+</body>
+</html>

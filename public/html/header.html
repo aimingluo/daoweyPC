@@ -1,0 +1,165 @@
+
+  <style type="text/css">
+    /*头部导航条*/
+    .header{
+      padding: 16px 100px 0 90px;
+      border-bottom: 1px solid #e5e5e5;
+      background-color:#fff ;
+    }
+    .clearfix{
+      *zoom:1
+    }
+    .clearfix:after{
+      content: "";
+      display: block;
+      clear: both;
+    }
+
+    .left,.right{
+      width:50%;
+      float: left;
+      color: #121212;
+      font-weight: bold;
+      font-size: 16px;
+    }
+    .header .address{
+      margin: 0 80px 0 160px;
+
+    }
+    .header .address img{
+      vertical-align: middle;
+    }
+
+    .right .tab-list{
+      margin-top: 8px;
+      float: right;
+      display: block;
+      white-space: nowrap;
+    }
+    .right .tab-list .tab-item{
+      float: right;
+      margin-right: 33px;
+      vertical-align: middle;
+      display: inline-block;
+    }
+    .right .tab-list .tab-item:nth-child(1){
+      position: relative;
+      top: -3px;
+      margin-right: 0;
+      display: inline-block;
+      width: 76px;
+      height: 26px;
+      line-height: 31px;
+      background-color: #e94840;
+      border-radius: 6px;
+      text-align: center;
+      color:#fff;
+    }
+    .right .tab-list .tab-item a{
+      color: #121212;
+      font-weight: bold;
+      font-size: 16px;
+      text-decoration: none;
+    }
+    .right .tab-list .tab-btn{
+      display: block;
+
+    }
+    .left .city,.left .city-toggle{
+      color: #121212;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 16px;
+    }
+    .navbar-default .navbar-nav > li > a:hover{
+      color: #e94840;
+      background-color: #fff;
+    }
+    .navbar-default .navbar-nav > li > a:active{
+      color: #e94840;
+      background-color: #fff;
+    }
+    .fix{
+      position: fixed;
+      z-index: 1000;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, .12);
+      width: 100%;
+      transform-origin: top;
+      animation: fixedHeader .8s ;
+    }
+    @keyframes fixedHeader {
+      0%{
+        opacity: 0;
+        transform: rotateX(100deg);
+      }
+      100%{
+        opacity: 1;
+        transform: rotateX(0);
+      }
+    }
+
+
+  </style>
+
+<body>
+<div id="header">
+  <div class="header">
+    <div class="posite clearfix">
+      <div class="left">
+        <img src="/images/index/logo.png" alt="logo">
+        <a class="address" href="/html/position.html">
+          <img src="/images/index/citypoint.png" alt="citypoint">
+          <span class="city">北京</span>
+          <span class="city-toggle">切换城市</span>
+        </a>
+      </div>
+      <div class="right">
+        <ul class="tab-list">
+          <li class="tab-item">
+            <a href="/html/login.html" class="tab-btn tab-item">商家登录</a>
+          </li>
+          <li class="tab-item">
+            <a href="/html/aboutus.html">关于我们</a>
+          </li>
+          <li class="tab-item">
+            <a href="/html/information.html" >商家入驻</a>
+          </li>
+          <li class="tab-item">
+            <a href="/html/service.html">服务商</a>
+          </li>
+          <li class="tab-item">
+            <a href="/html/downLoadApp.html">下载APP</a>
+          </li >
+          <li class="tab-item">
+            <a href="/index.html">首页</a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="/javascripts/jQuery.js"></script>
+<!--<script type="text/javascript" src="javascript/unslider.js"></script>-->
+<script src="/javascripts/bootstrap.min.js"></script>
+<script type="text/javascript">
+
+    $(window).scroll(function () {
+      var st = $(this).scrollTop();
+      if(st>70){
+        $('#header').addClass('fix')
+      }else{
+        $('#header').removeClass()
+      }
+    })
+
+
+
+
+  var city = window.localStorage.getItem("cityId")
+  $('span.city').text(city)
+
+</script>
+</body>

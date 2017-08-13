@@ -1,0 +1,33 @@
+#jqPaginator>div:first-child{
+    vertical-align: middle
+}
+#jqPaginator>div:nth-child(2){
+    display: inline-block;
+    margin: 20px 10px;
+    vertical-align: middle;
+    color: #999;
+}
+#jqPaginator>div:nth-child(2) input{
+    width: 33px;
+    height: 32px;
+    text-align: center;
+}
+#jqPaginator>div:nth-child(2) .total-pages{
+    color: #999;
+    font-size: 14px;
+}
+#jqPaginator>div:nth-child(2) .search-btn{
+    width: 38px;
+    height: 34px;
+    display: inline-block;
+    margin-left: 5px;
+    color: #999;
+    border: 1px solid #ddd;
+    line-height: 33px;
+    text-align: center;
+    font-size: 14px;
+    cursor: pointer;
+}
+#jqPaginator>div:nth-child(2) .search-btn:hover{
+    background-color: #eee;
+}

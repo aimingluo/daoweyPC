@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>register</title>
+  <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/stylesheets/layui.css">
+  <style type="text/css">
+    /*https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css*/
+
+  </style>
+</head>
+<body>
+  <div class="ng-scope">
+    <div class="register">
+      <div class="content">
+        <h2>到位商家后台</h2>
+        <form class="form-inline">
+          <div class="form-group radius">
+            <label class="sr-only" for="userphone"></label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="userphone" placeholder="请输入手机号">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="left">
+              <div id="v_container"></div>
+              <label class="sr-only" for="code_input"></label>
+              <div class="input-group">
+                <input type="text" class="form-control" id="code_input" placeholder="请输入图片中的字符串">
+              </div>
+            </div>
+            <div class="right">获取验证码
+            </div>
+          </div>
+          <div class="form-group radius">
+            <label class="sr-only" for="yanzheng"></label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="yanzheng" placeholder="请输入验证码">
+            </div>
+          </div>
+          <div class="form-group radius">
+            <label class="sr-only" for="password"></label>
+            <div class="input-group">
+              <input type="password" class="form-control" id="password" placeholder="请输入密码">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" name="vehicle" value="Car" class="ng-pristine ng-untouched ng-valid">
+          <a href="javascript:;" target="_Blank">您确认并同意到位用户协议</a>
+        </label>
+      </div>
+
+      <div class="denglu">
+        <button type="button" id="my_button" class="btn btn-primary">注册</button>
+      </div>
+      <div class="zhuce clearfix">
+        <a href="/html/login.html">已有账户？登录</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="/javascripts/bootstrap.min.js"></script>
+  <!-- 包含了所有编译插件 -->
+  <script src="/javascripts/jQuery.js"></script>
+  <script type="text/javascript" src="/javascripts/gVerify.js"></script>
+<script type="text/javascript">
+  var verifyCode = new GVerify("v_container");
+
+  /*失去焦点时发送请求，判断该号码是否注册过*/
+  $('#userphone').blur(function () {
+    var phone = $('#userphone').val()
+    var obj={
+      phone:phone,
+      oldPhone:JSON.parse(localStorage.getItem(phone))?JSON.parse(localStorage.getItem(phone)).name:''
+    }
+    $.get('/register',obj,function (msg) {
+      alert(msg)
+    })
+  })
+
+  document.getElementById("my_button").onclick = function(){
+    var res = verifyCode.validate(document.getElementById("code_input").value);
+    if(res){
+     var number =$('#userphone').val()
+     var  code = $('#yanzheng').val()
+      var mima = $('#password').val()
+      var obj={
+        number:number,
+        code:code
+      }
+      $.post('/regist',obj,function (data) {
+        if(data.code===1){
+          alert('手机验证码错误')
+        }else{
+          alert('注册成功')
+          var obj1 = {
+            name:number,
+            mima:mima
+          }
+          var str = JSON.stringify(obj1)
+          localStorage.setItem(obj1.name,str)
+          window.location.href ="/html/login.html"
+        }
+      })
+    }else{
+      alert("验证码错误");
+    }
+  }
+
+  $('.right').click(function () {
+    if(!$('#userphone').val()) {
+      //console.log($('#userphone').val())
+      alert('请输入手机号')
+    }else{
+      var phone = $('#userphone').val()
+      if(!(/^1[34578]\d{9}$/.test(phone))){
+        alert("手机号码有误，请重填");
+        return
+      }
+
+
+      /*发送短信验证码*/
+      var obj = {
+        number:phone
+      }
+      //console.log(obj.number)
+      $.get('/sendcode',obj,function (data) {
+        console.log('已发送')
+        alert(data)
+      })
+    }
+  })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+li{
+  list-style: none;
+}
+a{
+  text-decoration: none;
+}
+.poitioncity ul li{
+  font-size: 16px;
+  line-height: 40px;
+  padding: 0 1%;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+}
+.hotcity,.quicklycity{
+  width: 1200px;
+  margin: 40px auto 0;
+}
+.hotcity h3{
+  color: #929292;
+  font-size: 16px;
+}
+.hotcity ul{
+  width: 100%;
+  background:#f8f8f8;
+  margin: 0;
+}
+.hotcity ul li{
+  font-size: 16px;
+  line-height: 40px;
+  display: inline-block;
+  text-align: center;
+  padding: 0 1%;
+  cursor: pointer;
+}
+.quicklycity h3{
+  font-size: 16px;
+  color:#929292;
+}
+.quicklycity li{
+  line-height: 40px;
+  margin: 0 0.5%;
+  width: 3%;
+  text-align: center;
+  display: inline-block;
+}
+.quicklycity ul li.fist{
+  padding: 0 10px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  color: #fff;
+  background: #fb474f;
+}
+
